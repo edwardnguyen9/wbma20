@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, FlatList, TouchableOpacity, Image} from 'react-native';
 
 const mediaArray = [
   {
@@ -38,13 +38,13 @@ const App = () => {
       data={mediaArray}
       renderItem={({item}) => {
         return (
-          <TouchableOpacity>
+          <TouchableOpacity style={styles.listItem}>
             <Image
-              style={{width: 100, height: 100}}
+              style={styles.image}
               source={{uri: item.thumbnails.w160}}
             />
-            <View>
-              <Text>{item.title}</Text>
+            <View style={styles.content}>
+              <Text style={styles.title}>{item.title}</Text>
               <Text>{item.description}</Text>
             </View>
           </TouchableOpacity>
@@ -62,6 +62,29 @@ const styles = StyleSheet.create({
    alignItems: 'center',
    justifyContent: 'center',
  },
+ listItem: {
+   borderRadius: 1,
+   borderWidth: 1,
+   borderColor: '#000',
+   display: 'flex',
+   flexDirection: 'row',
+   margin: 5,
+   backgroundColor: '#ddd'
+ },
+ image: {
+   borderColor: '#000',
+   borderRadius: 50,
+   borderWidth: 1,
+   width: 100,
+   height: 100,
+   margin: 5
+ },
+ content: {
+   margin: 5
+ },
+ title: {
+   fontWeight: 'bold'
+ }
 });
 
 export default App;
