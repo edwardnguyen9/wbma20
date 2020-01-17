@@ -63,10 +63,8 @@ const styles = StyleSheet.create({
    justifyContent: 'center',
  },
  listItem: {
-   borderRadius: 1,
    borderWidth: 1,
    borderColor: '#000',
-   display: 'flex',
    flexDirection: 'row',
    margin: 5,
    backgroundColor: '#ddd'
