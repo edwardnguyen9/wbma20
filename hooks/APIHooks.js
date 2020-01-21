@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react'
 
 const axios = require('axios')
+const apiUrl = 'http://media.mw.metropolia.fi/wbma/'
 
-const useFetch = url => {
+const getAllMedia = () => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
 
     const fetchUrl = async () => {
-        axios.get(url)
-            .then(res => { 
-                setData(res.data)
-                setLoading(false)
+        axios.get(apiUrl + 'media/all')
+            .then(async res => {
+                await Promise.all(res.data.files.map(async item => 
+                    axios.get(apiUrl + 'media/' + item.file_id).then(res => { return res.data })
+                )).then((values) => {
+                    console.log(values)
+                    setData(values)
+                    setLoading(false)
+                })
             })
     }
 
@@ -21,4 +27,4 @@ const useFetch = url => {
     return [data, loading]
 }
 
-export { useFetch }
+export { getAllMedia }
