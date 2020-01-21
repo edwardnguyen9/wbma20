@@ -1,12 +1,16 @@
 import React from 'react'
 import { View } from 'react-native'
 import List from './components/List'
-import { styles, mediaArray } from './constants'
+
+import { MediaProvider } from './contexts/MediaContext'
+import { styles } from './constants'
 
 const App = () => {
  return (
    <View style={styles.container}>
-    <List mediaArray={mediaArray} />
+     <MediaProvider>
+       <List />
+     </MediaProvider>
    </View>
  );
 };
